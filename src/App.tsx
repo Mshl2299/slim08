@@ -3,7 +3,7 @@ import AppRoutes from './routes'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/slim08">
       <AppRoutes />
     </BrowserRouter>
   )
