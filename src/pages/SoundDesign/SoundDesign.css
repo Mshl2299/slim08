@@ -1,0 +1,43 @@
+.sound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sound-row {
+  display: grid;
+  grid-template-columns: 40px 1fr minmax(80px, 160px);
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+}
+
+.sound-row__play {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.sound-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sound-row__wave {
+  height: 32px;
+  border-radius: 1px;
+}
+
+@media (max-width: 540px) {
+  .sound-row {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .sound-row__wave {
+    display: none;
+  }
+}

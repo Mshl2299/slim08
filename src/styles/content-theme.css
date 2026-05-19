@@ -1,0 +1,80 @@
+/* Gold / cyan theme — page content only (not header) */
+
+.layout__main {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    var(--bg) 32%
+  );
+}
+
+.layout__main .page-shell__header {
+  border-bottom: 1px solid var(--border);
+}
+
+.layout__main .page-shell__title {
+  font-family: var(--heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: var(--shadow-gold);
+  margin: 0 0 12px;
+}
+
+.layout__main .page-shell__lead {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.layout__main .page-shell__lead strong {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.layout__main .skeleton-block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.layout__main .skeleton-line {
+  background: rgba(160, 224, 245, 0.12);
+}
+
+.layout__main .projects-card__thumb {
+  background: rgba(160, 224, 245, 0.06);
+  border-bottom: 1px solid var(--border);
+}
+
+.layout__main .sound-row__play {
+  background: var(--accent-bg);
+  border: 2px solid var(--blue);
+  box-shadow: var(--shadow-blue);
+}
+
+.layout__main .sound-row__wave {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 144, 255, 0.35) 0,
+    rgba(0, 144, 255, 0.35) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+.layout__main .contact-field__label {
+  color: var(--gold);
+}
+
+.layout__main .contact-field__input {
+  background: rgba(160, 224, 245, 0.06);
+  border: 1px solid var(--border);
+}
+
+.layout__main .contact-submit {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+  border: 2px solid var(--blue);
+  box-shadow: var(--shadow-blue);
+}

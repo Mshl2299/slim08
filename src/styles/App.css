@@ -1,59 +1,62 @@
 .counter {
+  font-family: var(--heading);
   font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+  border: 2px solid var(--blue);
+  box-shadow: var(--shadow-blue);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   margin-bottom: 24px;
+  cursor: pointer;
 
   &:hover {
-    border-color: var(--accent-border);
+    transform: translate(-2px, -2px);
+    box-shadow:
+      var(--shadow-blue),
+      4px 4px 0 var(--gold-shadow);
   }
+
   &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 }
 
 .hero {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
+.hero__logo-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--blue);
+  box-shadow:
+    0 0 0 2px var(--gold),
+    4px 4px 0 var(--gold-shadow);
+  background: var(--bg);
+  overflow: hidden;
+  padding: 12px;
+  box-sizing: border-box;
+}
 
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+.hero__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 #center {
@@ -63,11 +66,23 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+  padding: 48px 32px;
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
     gap: 18px;
   }
+}
+
+.tagline {
+  color: var(--text);
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+.tagline strong {
+  color: var(--cyan);
+  font-weight: 600;
 }
 
 #next-steps {
@@ -78,6 +93,20 @@
   & > div {
     flex: 1 1 0;
     padding: 32px;
+    background: var(--card-bg);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--blue));
+      opacity: 0.6;
+    }
+
     @media (max-width: 1024px) {
       padding: 24px 20px;
     }
@@ -87,11 +116,17 @@
     margin-bottom: 16px;
     width: 22px;
     height: 22px;
+    color: var(--blue);
   }
 
   @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
+
+    & > div::before {
+      width: 100%;
+      height: 4px;
+    }
   }
 }
 
@@ -116,20 +151,27 @@
   }
 
   a {
-    color: var(--text-h);
+    color: var(--cyan);
     font-size: 16px;
     border-radius: 6px;
     background: var(--social-bg);
+    border: 1px solid var(--border);
     display: flex;
     padding: 6px 12px;
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    transition: box-shadow 0.3s;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
 
     &:hover {
-      box-shadow: var(--shadow);
+      border-color: var(--blue);
+      box-shadow: var(--shadow-card);
+      transform: translate(-1px, -1px);
     }
+
     .button-icon {
       height: 18px;
       width: 18px;
@@ -175,10 +217,11 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: var(--gold);
   }
+
   &::after {
     right: 0;
-    border-right-color: var(--border);
+    border-right-color: var(--blue);
   }
 }

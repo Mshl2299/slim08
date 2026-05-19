@@ -1,0 +1,31 @@
+.page-shell__header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+}
+
+.page-shell__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.skeleton-block {
+  border-radius: 4px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 2px;
+}
+
+.skeleton-line--short {
+  width: 40%;
+}
+
+.skeleton-line--medium {
+  width: 70%;
+}
+
+.skeleton-line--full {
+  width: 100%;
+}
