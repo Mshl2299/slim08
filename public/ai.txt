@@ -1,0 +1,14 @@
+# ai.txt — machine-readable AI / ML scraping policy
+# https://site.spawning.ai/spawning-ai-txt (related conventions)
+
+User-Agent: *
+Disallow: /
+
+# This website does not agree to having its data scraped, crawled, indexed,
+# stored, or used for AI training, fine-tuning, evaluation, or generative use.
+
+AI-Training: no
+AI-Input: no
+AI-Output: no
+Scraping: no
+Crawl-delay: 9999

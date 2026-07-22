@@ -43,6 +43,12 @@
   background: rgba(160, 224, 245, 0.12);
 }
 
+.layout__main .projects-card__title,
+.layout__main .sound-row__title {
+  color: var(--gold);
+  text-shadow: var(--shadow-gold);
+}
+
 .layout__main .projects-card__thumb {
   background: rgba(160, 224, 245, 0.06);
   border-bottom: 1px solid var(--border);
