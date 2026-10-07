@@ -65,7 +65,9 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 12px 18px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .about-page__links a:hover {

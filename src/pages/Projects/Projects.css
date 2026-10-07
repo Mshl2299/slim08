@@ -19,7 +19,9 @@
   color: rgba(255, 255, 255, 0.8);
   border-radius: 999px;
   padding: 8px 14px;
-  font: 600 0.68rem/1 'DM Sans', sans-serif;
+  font:
+    600 0.68rem/1 'DM Sans',
+    sans-serif;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
@@ -58,7 +60,10 @@
   color: inherit;
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .projects-card:hover {

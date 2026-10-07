@@ -13,8 +13,19 @@ function Header() {
     <header className="site-header">
       <div className="site-header__inner">
         <div className="site-header__start">
-          <NavLink to="/" className="site-header__logo-link" end aria-label="Marcus Lim — home">
-            <img src={logo} alt="Marcus Lim logo" className="site-header__logo" width={36} height={36} />
+          <NavLink
+            to="/"
+            className="site-header__logo-link"
+            end
+            aria-label="Marcus Lim — home"
+          >
+            <img
+              src={logo}
+              alt="Marcus Lim logo"
+              className="site-header__logo"
+              width={36}
+              height={36}
+            />
           </NavLink>
           <NavLink to="/" className="site-header__brand" end>
             Marcus Lim

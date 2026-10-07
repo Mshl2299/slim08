@@ -1,11 +1,7 @@
 /* Gold / cyan theme — page content only (not header) */
 
 .layout__main {
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.95) 0%,
-    var(--bg) 32%
-  );
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, var(--bg) 32%);
 }
 
 .layout__main .page-shell__header {

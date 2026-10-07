@@ -23,8 +23,7 @@
   --social-bg: rgba(160, 224, 245, 0.06);
 
   --shadow-gold: 4px 4px 0 var(--gold-shadow);
-  --shadow-card:
-    0 10px 30px rgba(0, 0, 0, 0.6), 4px 4px 0 var(--gold-shadow);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.6), 4px 4px 0 var(--gold-shadow);
   --shadow-blue: 0 0 24px rgba(0, 144, 255, 0.25);
 
   --sans: 'DM Sans', system-ui, sans-serif;

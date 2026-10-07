@@ -114,11 +114,15 @@ ${designChoices}
 
 if (!existsSync(privatePath)) {
   if (!existsSync(examplePath)) {
-    console.error('Missing portfolio.private.json and portfolio.private.example.json')
+    console.error(
+      'Missing portfolio.private.json and portfolio.private.example.json'
+    )
     process.exit(1)
   }
   copyFileSync(examplePath, privatePath)
-  console.log('Created portfolio.private.json from example (edit this file; it is gitignored).')
+  console.log(
+    'Created portfolio.private.json from example (edit this file; it is gitignored).'
+  )
 }
 
 const raw = JSON.parse(readFileSync(privatePath, 'utf8'))
@@ -149,5 +153,5 @@ ${musicBlock}
 writeFileSync(outPath, file, 'utf8')
 console.log(`Wrote ${outPath}`)
 console.log(
-  `Encoded ${raw.codingProjects.length} coding + ${raw.musicProjects.length} music projects.`,
+  `Encoded ${raw.codingProjects.length} coding + ${raw.musicProjects.length} music projects.`
 )

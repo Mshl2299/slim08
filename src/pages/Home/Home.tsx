@@ -34,7 +34,10 @@ function wrapOffset(value: number, width: number): number {
   return ((value % width) + width) % width
 }
 
-function getProjectKey(project: Pick<ProjectRecord, 'name'>, suffix?: number | string): string {
+function getProjectKey(
+  project: Pick<ProjectRecord, 'name'>,
+  suffix?: number | string
+): string {
   const baseName = project.name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -53,7 +56,10 @@ function getProjectBackgroundImage(project: ProjectRecord): string {
   return 'linear-gradient(135deg, rgba(189, 138, 61, 0.75), rgba(10, 10, 10, 0.92), rgba(30, 24, 16, 1))'
 }
 
-function createDuplicatedProjectList(sourceProjects: ProjectRecord[], minimumLength = 24): ProjectWithKey[] {
+function createDuplicatedProjectList(
+  sourceProjects: ProjectRecord[],
+  minimumLength = 24
+): ProjectWithKey[] {
   if (sourceProjects.length === 0) {
     return []
   }
@@ -62,7 +68,8 @@ function createDuplicatedProjectList(sourceProjects: ProjectRecord[], minimumLen
   const duplicatedProjects: ProjectWithKey[] = []
 
   while (duplicatedProjects.length < renderLength) {
-    const sourceProject = sourceProjects[duplicatedProjects.length % sourceProjects.length]
+    const sourceProject =
+      sourceProjects[duplicatedProjects.length % sourceProjects.length]
     const sourceIndex = sourceProjects.indexOf(sourceProject)
 
     duplicatedProjects.push({
@@ -191,7 +198,11 @@ function InfiniteStrip({
       onPointerLeave={onPointerLeave}
     >
       <div className="home-array__viewport">
-        <div ref={trackRef} className="home-array__track" style={{ transform: `translate3d(${-offset}px, 0, 0)` }}>
+        <div
+          ref={trackRef}
+          className="home-array__track"
+          style={{ transform: `translate3d(${-offset}px, 0, 0)` }}
+        >
           {doubledItems.map((project, index) => (
             <ProjectCard
               key={`${project.projectKey}-${index}-${side}-${index >= items.length ? 'duplicate' : 'original'}`}
@@ -268,7 +279,8 @@ function HomeCaption({ activeProject, captionRef }: HomeCaptionProps) {
       </div>
       <div className="home-caption__bottom">
         <p>
-          Scroll to move. Click once to pin. Click again to open details. Click outside to unpin.
+          Scroll to move. Click once to pin. Click again to open details. Click
+          outside to unpin.
         </p>
       </div>
     </aside>
@@ -278,15 +290,24 @@ function HomeCaption({ activeProject, captionRef }: HomeCaptionProps) {
 function Home() {
   const codingProjects = useMemo(
     () => projectData.filter((project) => project.tags.includes('coding')),
-    [],
+    []
   )
   const audioProjects = useMemo(
     () => projectData.filter((project) => project.tags.includes('audio')),
-    [],
+    []
   )
-  const leftProjects = useMemo(() => createDuplicatedProjectList(codingProjects), [codingProjects])
-  const rightProjects = useMemo(() => createDuplicatedProjectList(audioProjects), [audioProjects])
-  const allProjects = useMemo(() => [...codingProjects, ...audioProjects], [audioProjects, codingProjects])
+  const leftProjects = useMemo(
+    () => createDuplicatedProjectList(codingProjects),
+    [codingProjects]
+  )
+  const rightProjects = useMemo(
+    () => createDuplicatedProjectList(audioProjects),
+    [audioProjects]
+  )
+  const allProjects = useMemo(
+    () => [...codingProjects, ...audioProjects],
+    [audioProjects, codingProjects]
+  )
   const [autoScroll, setAutoScroll] = useState(true)
   const [mediaPlaying, setMediaPlaying] = useState(false)
   const [selectedKey, setSelectedKey] = useState<string | null>(null)
@@ -324,7 +345,14 @@ function Home() {
         setOffset: setRightOffset,
       },
     ],
-    [leftOffset, leftProjects, leftSequenceWidth, rightOffset, rightProjects, rightSequenceWidth],
+    [
+      leftOffset,
+      leftProjects,
+      leftSequenceWidth,
+      rightOffset,
+      rightProjects,
+      rightSequenceWidth,
+    ]
   )
 
   useEffect(() => {
@@ -391,7 +419,11 @@ function Home() {
   }, [leftProjects, rightProjects])
 
   useEffect(() => {
-    const shouldAnimate = autoScroll && !reducedMotionEnabled && !isPointerPaused && isDocumentVisible
+    const shouldAnimate =
+      autoScroll &&
+      !reducedMotionEnabled &&
+      !isPointerPaused &&
+      isDocumentVisible
 
     if (!shouldAnimate) {
       return undefined
@@ -409,7 +441,9 @@ function Home() {
           return
         }
 
-        setOffset((current) => wrapOffset(current - deltaSeconds * speed, width))
+        setOffset((current) =>
+          wrapOffset(current - deltaSeconds * speed, width)
+        )
       })
 
       animationFrame = window.requestAnimationFrame(updateOffset)
@@ -420,7 +454,13 @@ function Home() {
     return () => {
       window.cancelAnimationFrame(animationFrame)
     }
-  }, [autoScroll, isDocumentVisible, isPointerPaused, reducedMotionEnabled, stripConfig])
+  }, [
+    autoScroll,
+    isDocumentVisible,
+    isPointerPaused,
+    reducedMotionEnabled,
+    stripConfig,
+  ])
 
   const projectIndex = useMemo(() => {
     const map = new Map<string, ProjectRecord>()
@@ -431,8 +471,12 @@ function Home() {
 
     return map
   }, [allProjects])
-  const lockedProject = selectedKey ? projectIndex.get(selectedKey) ?? null : null
-  const hoveredProject = hoveredKey ? projectIndex.get(hoveredKey) ?? null : null
+  const lockedProject = selectedKey
+    ? (projectIndex.get(selectedKey) ?? null)
+    : null
+  const hoveredProject = hoveredKey
+    ? (projectIndex.get(hoveredKey) ?? null)
+    : null
   const activeProject = lockedProject ?? hoveredProject
 
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
@@ -443,7 +487,9 @@ function Home() {
         return
       }
 
-      setOffset((current) => wrapOffset(current + event.deltaY * wheelFactor, width))
+      setOffset((current) =>
+        wrapOffset(current + event.deltaY * wheelFactor, width)
+      )
     })
   }
 
@@ -529,7 +575,10 @@ function Home() {
         </div>
 
         <HomeCaption activeProject={activeProject} captionRef={captionRef} />
-        <ProjectDetailOverlay project={detailProject} onClose={() => setDetailProject(null)} />
+        <ProjectDetailOverlay
+          project={detailProject}
+          onClose={() => setDetailProject(null)}
+        />
       </div>
     </div>
   )

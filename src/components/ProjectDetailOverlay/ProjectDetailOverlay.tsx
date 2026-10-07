@@ -21,7 +21,10 @@ interface ProjectDetailOverlayProps {
   onClose: () => void
 }
 
-export function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayProps) {
+export function ProjectDetailOverlay({
+  project,
+  onClose,
+}: ProjectDetailOverlayProps) {
   useEffect(() => {
     if (!project) {
       return undefined
@@ -52,8 +55,17 @@ export function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayP
   const projectLinks = project.links ?? []
 
   return (
-    <div className="project-detail-overlay" role="dialog" aria-modal="true" aria-labelledby="project-detail-title">
-      <div className="project-detail-overlay__backdrop" onClick={onClose} aria-hidden="true" />
+    <div
+      className="project-detail-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-detail-title"
+    >
+      <div
+        className="project-detail-overlay__backdrop"
+        onClick={onClose}
+        aria-hidden="true"
+      />
       <div className="project-detail-overlay__panel">
         <button
           type="button"
@@ -66,9 +78,16 @@ export function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayP
 
         <div className="project-detail-overlay__media">
           {previewImage ? (
-            <img src={previewImage} alt={project.name} className="project-detail-overlay__image" />
+            <img
+              src={previewImage}
+              alt={project.name}
+              className="project-detail-overlay__image"
+            />
           ) : (
-            <div className="project-detail-overlay__fallback" aria-hidden="true" />
+            <div
+              className="project-detail-overlay__fallback"
+              aria-hidden="true"
+            />
           )}
         </div>
 
@@ -81,19 +100,31 @@ export function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayP
             ))}
           </div>
 
-          <h2 id="project-detail-title" className="project-detail-overlay__title">
+          <h2
+            id="project-detail-title"
+            className="project-detail-overlay__title"
+          >
             {project.name}
           </h2>
 
-          <p className="project-detail-overlay__summary">{project.shortDescription || project.description}</p>
+          <p className="project-detail-overlay__summary">
+            {project.shortDescription || project.description}
+          </p>
 
           <div className="project-detail-overlay__body">
             <p>{project.description}</p>
-            {project.audioFile ? <p className="project-detail-overlay__audio">Audio: {project.audioFile}</p> : null}
+            {project.audioFile ? (
+              <p className="project-detail-overlay__audio">
+                Audio: {project.audioFile}
+              </p>
+            ) : null}
           </div>
 
           {projectLinks.length > 0 ? (
-            <div className="project-detail-overlay__links" aria-label={`${project.name} links`}>
+            <div
+              className="project-detail-overlay__links"
+              aria-label={`${project.name} links`}
+            >
               {projectLinks.map((link) => (
                 <a
                   key={`${project.name}-${link.label}`}
