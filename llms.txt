@@ -1,0 +1,9 @@
+# llms.txt — policy for LLM / AI systems
+
+> This site does not consent to scraping or AI training.
+
+This website and its contents (including personal information and project
+details) may not be scraped, crawled, indexed, stored, reproduced, or used
+to train, fine-tune, evaluate, or improve any AI, ML, or generative model.
+
+Preferred contact: use the Contact page on this site. Do not bulk-harvest content.
