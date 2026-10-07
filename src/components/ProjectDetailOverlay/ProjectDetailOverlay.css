@@ -1,0 +1,195 @@
+.project-detail-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 32px 0;
+}
+
+.project-detail-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.project-detail-overlay__panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  width: min(900px, calc(100vw - 24px));
+  height: min(72vh, 680px);
+  max-height: min(72vh, 680px);
+  overflow: hidden;
+  background: rgba(18, 18, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.project-detail-overlay__panel > * {
+  min-height: 0;
+}
+
+.project-detail-overlay__media {
+  min-height: 240px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.project-detail-overlay__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+}
+
+.project-detail-overlay__fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(189, 138, 61, 0.75), rgba(16, 16, 16, 0.94), rgba(31, 25, 16, 1));
+}
+
+.project-detail-overlay__content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 28px 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.project-detail-overlay__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-detail-overlay__tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-detail-overlay__title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-detail-overlay__summary {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-detail-overlay__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  white-space: pre-line;
+}
+
+.project-detail-overlay__body p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.project-detail-overlay__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: -2px;
+}
+
+.project-detail-overlay__link {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(159, 224, 249, 0.5);
+  border-radius: 999px;
+  background: rgba(159, 224, 249, 0.08);
+  color: #dff8ff;
+  text-decoration: none;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-detail-overlay__link:hover,
+.project-detail-overlay__link:focus-visible {
+  background: rgba(159, 224, 249, 0.16);
+  border-color: rgba(159, 224, 249, 0.9);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.project-detail-overlay__gallery {
+  display: grid;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.project-detail-overlay__gallery-image {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  object-fit: cover;
+}
+
+.project-detail-overlay__audio {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.project-detail-overlay__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.38);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .project-detail-overlay__panel {
+    grid-template-columns: 1fr;
+    height: min(86vh, 700px);
+    max-height: min(86vh, 700px);
+  }
+
+  .project-detail-overlay__media {
+    min-height: 220px;
+  }
+
+  .project-detail-overlay__content {
+    padding: 20px 18px 24px;
+  }
+}

@@ -18,8 +18,7 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gold);
-  text-shadow: var(--shadow-gold);
+  color: white;
   margin: 0 0 12px;
 }
 

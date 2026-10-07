@@ -3,10 +3,9 @@ import logo from '../../assets/logo.png'
 import './Header.css'
 
 const navItems = [
-  { to: '/', label: 'Projects' },
-  { to: '/sound-design', label: 'Sound Design' },
+  { to: '/', label: 'Home' },
+  { to: '/projects', label: 'Projects' },
   { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
 ] as const
 
 function Header() {
@@ -15,7 +14,7 @@ function Header() {
       <div className="site-header__inner">
         <div className="site-header__start">
           <NavLink to="/" className="site-header__logo-link" end aria-label="Marcus Lim — home">
-            <img src={logo} alt="" className="site-header__logo" width={36} height={36} />
+            <img src={logo} alt="Marcus Lim logo" className="site-header__logo" width={36} height={36} />
           </NavLink>
           <NavLink to="/" className="site-header__brand" end>
             Marcus Lim
