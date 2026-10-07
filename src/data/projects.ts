@@ -191,7 +191,7 @@ export const projects: ProjectRecord[] = [
             
             Welcome aboard the S.S. Trange, your new fishing boat in galactic wilds. Fish from ocean-like planets, sell them to alien locals, and sail the distant strange seas!
             
-            Made as part of the 2026 Brackey\’s Game Jam (Pt.1), theme of “Strange Places”.
+            Made as part of the 2026 Brackey’s Game Jam (Pt.1), theme of “Strange Places”.
             
             Rankings:
             - Gameplay: #36 of 1,421 entries (3.9/5); top 2.4%

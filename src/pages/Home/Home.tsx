@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useMemo,
   useRef,
@@ -27,10 +27,7 @@ interface StripConfig {
 }
 
 function wrapOffset(value: number, width: number): number {
-  if (width === 0) {
-    return 0
-  }
-
+  if (width === 0) return 0
   return ((value % width) + width) % width
 }
 
@@ -44,25 +41,22 @@ function getProjectKey(
     .replace(/^-+|-+$/g, '')
 
   const slug = baseName || 'project'
-
   return suffix === undefined ? slug : `${slug}-${suffix}`
 }
 
 function getProjectBackgroundImage(project: ProjectRecord): string {
   if (project.screenshots?.[0]) {
-    return `linear-gradient(135deg, rgba(14, 14, 14, 0.35), rgba(8, 8, 8, 0.7)), url(${project.screenshots[0]})`
+    return `linear-gradient(135deg, rgba(14,14,14,0.35), rgba(8,8,8,0.7)), url(${project.screenshots[0]})`
   }
 
-  return 'linear-gradient(135deg, rgba(189, 138, 61, 0.75), rgba(10, 10, 10, 0.92), rgba(30, 24, 16, 1))'
+  return 'linear-gradient(135deg, rgba(189,138,61,0.75), rgba(10,10,10,0.92), rgba(30,24,16,1))'
 }
 
 function createDuplicatedProjectList(
   sourceProjects: ProjectRecord[],
   minimumLength = 24
 ): ProjectWithKey[] {
-  if (sourceProjects.length === 0) {
-    return []
-  }
+  if (sourceProjects.length === 0) return []
 
   const renderLength = Math.max(minimumLength, sourceProjects.length * 3)
   const duplicatedProjects: ProjectWithKey[] = []
@@ -70,11 +64,9 @@ function createDuplicatedProjectList(
   while (duplicatedProjects.length < renderLength) {
     const sourceProject =
       sourceProjects[duplicatedProjects.length % sourceProjects.length]
-    const sourceIndex = sourceProjects.indexOf(sourceProject)
-
     duplicatedProjects.push({
       ...sourceProject,
-      projectKey: getProjectKey(sourceProject, sourceIndex),
+      projectKey: getProjectKey(sourceProject),
     })
   }
 
@@ -124,19 +116,14 @@ function ProjectCard({
         backgroundSize: project.screenshots?.[0] ? 'cover' : '100% 100%',
         backgroundRepeat: 'no-repeat',
         pointerEvents: isMuted ? 'none' : 'auto',
-        transform: 'translate3d(0, 0, 0)',
+        transform: 'translate3d(0,0,0)',
       }}
       onMouseEnter={() => {
-        if (selectedKey !== null && !isSelected) {
-          return
-        }
-
+        if (selectedKey !== null && !isSelected) return
         setHoveredKey(projectKey)
       }}
       onMouseLeave={() => {
-        if (selectedKey === null) {
-          setHoveredKey(null)
-        }
+        if (selectedKey === null) setHoveredKey(null)
       }}
       onClick={() => {
         if (selectedKey === projectKey) {
@@ -201,7 +188,7 @@ function InfiniteStrip({
         <div
           ref={trackRef}
           className="home-array__track"
-          style={{ transform: `translate3d(${-offset}px, 0, 0)` }}
+          style={{ transform: `translate3d(${-offset}px,0,0)` }}
         >
           {doubledItems.map((project, index) => (
             <ProjectCard
@@ -242,7 +229,7 @@ function PlaybackControls({
       <button
         type="button"
         className="home-playback__toggle"
-        onClick={() => setMediaPlaying((current) => !current)}
+        onClick={() => setMediaPlaying((c) => !c)}
         aria-label={mediaPlaying ? 'Pause audio' : 'Play audio'}
       >
         <span className="home-playback__icon" aria-hidden="true">
@@ -252,7 +239,7 @@ function PlaybackControls({
       <button
         type="button"
         className="home-playback__label"
-        onClick={() => setAutoScroll((current) => !current)}
+        onClick={() => setAutoScroll((c) => !c)}
         aria-label={autoScroll ? 'Pause auto scroll' : 'Play auto scroll'}
       >
         AUTO
@@ -287,13 +274,13 @@ function HomeCaption({ activeProject, captionRef }: HomeCaptionProps) {
   )
 }
 
-function Home() {
+export default function Home(): ReturnType<React.FC> {
   const codingProjects = useMemo(
-    () => projectData.filter((project) => project.tags.includes('coding')),
+    () => projectData.filter((p) => p.tags.includes('coding')),
     []
   )
   const audioProjects = useMemo(
-    () => projectData.filter((project) => project.tags.includes('audio')),
+    () => projectData.filter((p) => p.tags.includes('audio')),
     []
   )
   const leftProjects = useMemo(
@@ -308,6 +295,7 @@ function Home() {
     () => [...codingProjects, ...audioProjects],
     [audioProjects, codingProjects]
   )
+
   const [autoScroll, setAutoScroll] = useState(true)
   const [mediaPlaying, setMediaPlaying] = useState(false)
   const [selectedKey, setSelectedKey] = useState<string | null>(null)
@@ -320,6 +308,7 @@ function Home() {
   const [isPointerPaused, setIsPointerPaused] = useState(false)
   const [isDocumentVisible, setIsDocumentVisible] = useState(!document.hidden)
   const [reducedMotionEnabled, setReducedMotionEnabled] = useState(false)
+
   const captionRef = useRef<HTMLElement | null>(null)
   const leftTrackRef = useRef<HTMLDivElement | null>(null)
   const rightTrackRef = useRef<HTMLDivElement | null>(null)
@@ -357,29 +346,17 @@ function Home() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-
-    const handleMotionChange = () => {
-      setReducedMotionEnabled(mediaQuery.matches)
-    }
-
+    const handleMotionChange = () => setReducedMotionEnabled(mediaQuery.matches)
     handleMotionChange()
     mediaQuery.addEventListener('change', handleMotionChange)
-
-    return () => {
-      mediaQuery.removeEventListener('change', handleMotionChange)
-    }
+    return () => mediaQuery.removeEventListener('change', handleMotionChange)
   }, [])
 
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      setIsDocumentVisible(!document.hidden)
-    }
-
+    const handleVisibilityChange = () => setIsDocumentVisible(!document.hidden)
     document.addEventListener('visibilitychange', handleVisibilityChange)
-
-    return () => {
+    return () =>
       document.removeEventListener('visibilitychange', handleVisibilityChange)
-    }
   }, [])
 
   useEffect(() => {
@@ -387,35 +364,18 @@ function Home() {
     const rightTrack = rightTrackRef.current
 
     const updateSequenceWidths = () => {
-      if (leftTrack) {
-        setLeftSequenceWidth(leftTrack.scrollWidth / 2)
-      }
-      if (rightTrack) {
-        setRightSequenceWidth(rightTrack.scrollWidth / 2)
-      }
+      if (leftTrack) setLeftSequenceWidth(leftTrack.scrollWidth / 2)
+      if (rightTrack) setRightSequenceWidth(rightTrack.scrollWidth / 2)
     }
 
     updateSequenceWidths()
 
-    if (!leftTrack && !rightTrack) {
-      return undefined
-    }
+    const resizeObserver = new ResizeObserver(updateSequenceWidths)
 
-    const resizeObserver = new ResizeObserver(() => {
-      updateSequenceWidths()
-    })
+    if (leftTrack) resizeObserver.observe(leftTrack)
+    if (rightTrack) resizeObserver.observe(rightTrack)
 
-    if (leftTrack) {
-      resizeObserver.observe(leftTrack)
-    }
-
-    if (rightTrack) {
-      resizeObserver.observe(rightTrack)
-    }
-
-    return () => {
-      resizeObserver.disconnect()
-    }
+    return () => resizeObserver.disconnect()
   }, [leftProjects, rightProjects])
 
   useEffect(() => {
@@ -424,10 +384,7 @@ function Home() {
       !reducedMotionEnabled &&
       !isPointerPaused &&
       isDocumentVisible
-
-    if (!shouldAnimate) {
-      return undefined
-    }
+    if (!shouldAnimate) return undefined
 
     let animationFrame = 0
     let previousTime = 0
@@ -437,10 +394,7 @@ function Home() {
       previousTime = time
 
       stripConfig.forEach(({ width, speed, setOffset }) => {
-        if (width === 0) {
-          return
-        }
-
+        if (width === 0) return
         setOffset((current) =>
           wrapOffset(current - deltaSeconds * speed, width)
         )
@@ -450,10 +404,7 @@ function Home() {
     }
 
     animationFrame = window.requestAnimationFrame(updateOffset)
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame)
-    }
+    return () => window.cancelAnimationFrame(animationFrame)
   }, [
     autoScroll,
     isDocumentVisible,
@@ -464,13 +415,10 @@ function Home() {
 
   const projectIndex = useMemo(() => {
     const map = new Map<string, ProjectRecord>()
-
-    allProjects.forEach((project, index) => {
-      map.set(getProjectKey(project, index), project)
-    })
-
+    allProjects.forEach((project) => map.set(getProjectKey(project), project))
     return map
   }, [allProjects])
+
   const lockedProject = selectedKey
     ? (projectIndex.get(selectedKey) ?? null)
     : null
@@ -481,53 +429,32 @@ function Home() {
 
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
     setAutoScroll(false)
-
     stripConfig.forEach(({ width, wheelFactor, setOffset }) => {
-      if (width === 0) {
-        return
-      }
-
+      if (width === 0) return
       setOffset((current) =>
         wrapOffset(current + event.deltaY * wheelFactor, width)
       )
     })
   }
 
-  const handleOpenProjectDetails = (project: ProjectRecord) => {
+  const handleOpenProjectDetails = (project: ProjectRecord) =>
     setDetailProject(project)
-  }
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent | TouchEvent) {
-      if (!selectedKey) {
-        return
-      }
-
+      if (!selectedKey) return
       const target = event.target
-
-      if (!(target instanceof Node)) {
-        return
-      }
-
-      if (captionRef.current && captionRef.current.contains(target)) {
-        return
-      }
-
+      if (!(target instanceof Node)) return
+      if (captionRef.current && captionRef.current.contains(target)) return
       const clickedCard = (target as HTMLElement).closest('.project-float')
-      if (clickedCard) {
-        return
-      }
-
+      if (clickedCard) return
       setSelectedKey(null)
       setHoveredKey(null)
       setAutoScroll(true)
     }
 
     document.addEventListener('pointerdown', handlePointerDown)
-
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown)
-    }
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
   }, [selectedKey])
 
   return (
@@ -583,5 +510,3 @@ function Home() {
     </div>
   )
 }
-
-export default Home
