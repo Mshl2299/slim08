@@ -20,13 +20,18 @@ function SoundDesign() {
               <p className="sound-row__desc">
                 {project.shortDescription || project.description}
               </p>
-              {project.audioFile ? (
-                <audio className="sound-row__audio" controls preload="none">
-                  <source
-                    src={`${import.meta.env.BASE_URL}${project.audioFile}`}
-                  />
-                </audio>
-              ) : null}
+              {project.audioFiles && project.audioFiles.length > 0
+                ? project.audioFiles.map((audioFile, index) => (
+                    <audio
+                      key={`${project.name}-audio-${index}`}
+                      className="sound-row__audio"
+                      controls
+                      preload="none"
+                    >
+                      <source src={audioFile} />
+                    </audio>
+                  ))
+                : null}
             </div>
           </li>
         ))}

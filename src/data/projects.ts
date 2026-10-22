@@ -1,6 +1,7 @@
 import photoLoopA from '../assets/project-screenshots/e49vOF.png'
 import photoLoopB from '../assets/project-screenshots/QYsXh1.png'
 import photoLoopC from '../assets/project-screenshots/yu3LkT.png'
+import photoLoopAudioA from '../assets/audio/main/st_ranges_hop_highdef_noloop.wav'
 import nutreentsA from '../assets/project-screenshots/kJtM64.gif'
 import nutreentsB from '../assets/project-screenshots/dQ5QNt.gif'
 import pillowA from '../assets/project-screenshots/qVziEp.png'
@@ -10,6 +11,12 @@ import pillowD from '../assets/project-screenshots/ncIxRV.png'
 import ssTrangeA from '../assets/project-screenshots/o0qgtf.gif'
 import ssTrangeB from '../assets/project-screenshots/9Zos0D.gif'
 import ssTrangeC from '../assets/project-screenshots/obP3W2.gif'
+import pacemakerA from '../assets/project-screenshots/pacemaker.gif'
+import astEmmentalAudioA from '../assets/audio/main/Nereus.mp3'
+import insightsA from '../assets/project-screenshots/si136.png'
+import pain2goA from '../assets/project-screenshots/pain2go_landing.jpg'
+import pain2goB from '../assets/project-screenshots/pain2go_exercises.jpg'
+
 
 export type ProjectTag =
   | 'coding'
@@ -29,7 +36,7 @@ export interface ProjectRecord {
   description: string
   links?: ProjectLink[]
   screenshots?: string[]
-  audioFile?: string
+  audioFiles?: string[]
   tags: ProjectTag[]
 }
 
@@ -47,7 +54,7 @@ export const projects: ProjectRecord[] = [
             - Built and maintained 38+ Mocha tests and achieved a 100% pass rate before submission.
             
             Completed as part of Introduction to Software Engineering.`,
-    screenshots: [],
+    screenshots: [insightsA],
     tags: ['coding'],
   },
   {
@@ -113,6 +120,7 @@ export const projects: ProjectRecord[] = [
       { label: 'itch.io', url: 'https://goosemachine.itch.io/photoloop' },
     ],
     screenshots: [photoLoopA, photoLoopB, photoLoopC],
+    audioFiles: [photoLoopAudioA],
     tags: ['coding', 'game-dev', 'audio'],
   },
   {
@@ -237,6 +245,7 @@ export const projects: ProjectRecord[] = [
       { label: 'GitHub', url: 'https://github.com/wispykey/UBCGD-Team-14' },
       { label: 'itch.io', url: 'https://wispykey.itch.io/pacemaker' },
     ],
+    screenshots: [pacemakerA],
     tags: ['coding', 'game-dev'],
   },
   {
@@ -264,6 +273,7 @@ export const projects: ProjectRecord[] = [
     links: [
       { label: 'GitHub', url: 'https://github.com/Mshl2299/Ast-Emmental' },
     ],
+    audioFiles: [astEmmentalAudioA],
     tags: ['coding', 'game-dev', 'audio'],
   },
   {
@@ -275,7 +285,8 @@ export const projects: ProjectRecord[] = [
             A healthcare-rehabilitation app providing a 2d anatomical mapping to pinpoint muscle locations that may be encountering pain. Once identified, users can view a set of exercises targeting that specific muscle/muscle group, supporting a range of fitness levels. With good consistency and awareness, eventually we will have all Pain2Go away!
             
             Completed on a team of 4 as part of nwHacks 2024, a 24-hour hackathon.`,
-    links: [{ label: 'GitHub', url: 'https://github.com/gordnzhou/Pain2Go' }],
+    links: [{ label: 'GitHub', url: 'https://github.com/gordnzhou/Pain2Go' }, { label: 'Link', url: 'https://gordnzhou.github.io/Pain2Go/' }],
+    screenshots: [pain2goA, pain2goB],
     tags: ['coding'],
   },
 ]

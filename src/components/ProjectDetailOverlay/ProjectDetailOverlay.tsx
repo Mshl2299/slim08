@@ -12,7 +12,7 @@ interface ProjectDetailItem {
   description: string
   links?: ProjectLinkItem[]
   screenshots?: string[]
-  audioFile?: string
+  audioFiles?: string[]
   tags?: string[]
 }
 
@@ -113,10 +113,19 @@ export function ProjectDetailOverlay({
 
           <div className="project-detail-overlay__body">
             <p>{project.description}</p>
-            {project.audioFile ? (
-              <p className="project-detail-overlay__audio">
-                Audio: {project.audioFile}
-              </p>
+            {project.audioFiles && project.audioFiles.length > 0 ? (
+              <div className="project-detail-overlay__audio-list">
+                {project.audioFiles.map((audioFile, index) => (
+                  <audio
+                    key={`${project.name}-audio-${index}`}
+                    className="project-detail-overlay__audio"
+                    controls
+                    preload="none"
+                  >
+                    <source src={audioFile} />
+                  </audio>
+                ))}
+              </div>
             ) : null}
           </div>
 

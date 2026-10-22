@@ -1,7 +1,7 @@
 .home-page {
   position: relative;
   width: 100%;
-  min-height: 70vh;
+  min-height: 0;
   background: #000;
   color: #fff;
   overflow: hidden;
@@ -10,8 +10,12 @@
 
 .home-page__inner {
   position: relative;
-  min-height: 70vh;
+  min-height: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
   overflow: hidden;
   background:
     radial-gradient(
@@ -20,26 +24,84 @@
       transparent 35%
     ),
     #000;
+  padding-top: 0;
 }
 
 .home-playback {
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   z-index: 30;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 14px;
+  justify-content: center;
+  gap: 14px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+}
+
+.home-playback__group {
+  display: flex;
+  align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
+  border-radius: 18px;
   background: rgba(18, 18, 18, 0.72);
   backdrop-filter: blur(12px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
 }
 
-.home-playback__toggle {
+.home-playback__group--music {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 10px 14px;
+  width: min(460px, 52vw);
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.home-playback__group--auto {
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  flex-shrink: 0;
+}
+
+.home-playback__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.home-playback__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1 1 auto;
+  padding-top: 2px;
+}
+
+.home-playback__status {
+  color: rgba(255, 255, 255, 0.78);
+  font:
+    600 0.62rem/1 'DM Sans',
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.home-playback__toggle,
+.home-playback__next {
   appearance: none;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.08);
@@ -58,7 +120,14 @@
     background 0.2s ease;
 }
 
+.home-playback__next {
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
 .home-playback__toggle:hover,
+.home-playback__next:hover,
 .home-playback__label:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.4);
@@ -94,15 +163,45 @@
     background 0.2s ease;
 }
 
+.home-playback__label--active {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.11);
+  color: #fff;
+}
+
+.home-playback__volume {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 2px;
+  color: rgba(255, 255, 255, 0.8);
+  font:
+    600 0.62rem/1 'DM Sans',
+    sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: fit-content;
+}
+
+.home-playback__volume input {
+  width: 110px;
+  accent-color: #fff;
+  cursor: pointer;
+  margin: 0;
+}
+
 .home-strip {
-  position: absolute;
-  inset: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 34px;
-  padding: 0px 0 120px;
+  padding: 0 0 120px;
   z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .home-array {
@@ -205,8 +304,7 @@
   top: 18px;
   z-index: 1;
   font:
-    700 0.78rem/1.1 'DM Sans',
-    sans-serif;
+    700 0.78rem/1.1 var(--sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
@@ -258,20 +356,10 @@
 
 .home-caption__summary {
   margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   color: rgba(255, 255, 255, 0.84);
   font:
-    400 0.96rem/1.6 'DM Sans',
-    sans-serif;
-}
-
-.home-caption__bottom {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.72);
-  font:
-    400 0.76rem/1.6 'DM Sans',
-    sans-serif;
+    400 0.96rem/1.6 var(--mono);
 }
 
 @media (max-width: 900px) {
@@ -289,12 +377,12 @@
 
 @media (max-width: 640px) {
   .home-page__inner {
-    min-height: calc(100vh - 90px);
+    min-height: 0;
   }
 
   .home-strip {
     gap: 18px;
-    padding: 46px 0 110px;
+    padding: 0 0 110px;
   }
 
   .project-float {
