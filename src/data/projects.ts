@@ -12,8 +12,13 @@ import ssTrangeA from '../assets/project-screenshots/o0qgtf.gif'
 import ssTrangeB from '../assets/project-screenshots/9Zos0D.gif'
 import ssTrangeC from '../assets/project-screenshots/obP3W2.gif'
 import pacemakerA from '../assets/project-screenshots/pacemaker.gif'
+import astEmmentalA from '../assets/project-screenshots/astemmental-basic.gif'
+import astEmmentalB from '../assets/project-screenshots/aem.png'
+import astEmmentalC from '../assets/project-screenshots/aes.png'
 import astEmmentalAudioA from '../assets/audio/main/Nereus.mp3'
+import vetonedA from '../assets/project-screenshots/vetoned.png'
 import insightsA from '../assets/project-screenshots/si136.png'
+import natureTrackerA from '../assets/project-screenshots/natureTracker.png'
 import pain2goA from '../assets/project-screenshots/pain2go_landing.jpg'
 import pain2goB from '../assets/project-screenshots/pain2go_exercises.jpg'
 
@@ -67,6 +72,7 @@ export const projects: ProjectRecord[] = [
             using React, Node.js, Oracle SQL, and Material UI
             
             Completed on a team of 3 as part of Introduction to Relational Databases.`,
+    screenshots: [natureTrackerA],
     tags: ['coding'],
   },
   {
@@ -78,6 +84,7 @@ export const projects: ProjectRecord[] = [
             
             Completed solo with Java and JUnit as part of Software Construction.`,
     links: [{ label: 'GitHub', url: 'https://github.com/Mshl2299/VeToned' }],
+    screenshots: [vetonedA],
     tags: ['coding'],
   },
   {
@@ -273,6 +280,7 @@ export const projects: ProjectRecord[] = [
     links: [
       { label: 'GitHub', url: 'https://github.com/Mshl2299/Ast-Emmental' },
     ],
+    screenshots: [astEmmentalA, astEmmentalB, astEmmentalC],
     audioFiles: [astEmmentalAudioA],
     tags: ['coding', 'game-dev', 'audio'],
   },
