@@ -22,11 +22,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
             Developed a full-stack application for recording, sharing, and querying plant and animal sightings across 16 attributes
             using React, Node.js, Oracle SQL, and Material UI
             
-            Completed on a team of 3 as part of Introduction to Relational Databases.`,tags:[`coding`]},{name:`VeToned`,shortDescription:`A meal-planner app for specialized diets`,description:`Sept 2024 - Dec 2024
+            Completed on a team of 3 as part of Introduction to Relational Databases.`,screenshots:[`/slim08/assets/natureTracker-CUkbRleI.png`],tags:[`coding`]},{name:`VeToned`,shortDescription:`A meal-planner app for specialized diets`,description:`Sept 2024 - Dec 2024
             
             Developed a simple meal-planner app for Asian diets, which often involve many dishes that become hard to track ingredients and macronutrients.
             
-            Completed solo with Java and JUnit as part of Software Construction.`,links:[{label:`GitHub`,url:`https://github.com/Mshl2299/VeToned`}],tags:[`coding`]},{name:`Predicting AirBnB Prices in European Cities`,shortDescription:`A multiple linear regression model for predicting AirBnB listing prices in European cities`,description:`July 2025 -- Aug. 2025
+            Completed solo with Java and JUnit as part of Software Construction.`,links:[{label:`GitHub`,url:`https://github.com/Mshl2299/VeToned`}],screenshots:[`/slim08/assets/vetoned-CY95Uk38.png`],tags:[`coding`]},{name:`Predicting AirBnB Prices in European Cities`,shortDescription:`A multiple linear regression model for predicting AirBnB listing prices in European cities`,description:`July 2025 -- Aug. 2025
             
             Modeled a multiple linear regression model using forward stepwise predictor selection on 23, 042 European Airbnb listings, achieving an R-squared of 0.578 and reducing RMSE by approximately 32% over the baseline mode.
             
@@ -131,7 +131,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
             
             What I learned:
             Iterative build process of games
-            A bit of everything in the game development cycle (design, art, audio, mechanics, maintenance)`,links:[{label:`GitHub`,url:`https://github.com/Mshl2299/Ast-Emmental`}],audioFiles:[tr],tags:[`coding`,`game-dev`,`audio`]},{name:`Pain2Go`,shortDescription:`A healthcare-rehabilitation app providing a 2d anatomical mapping to pinpoint muscle locations that may be encountering pain.`,description:`Jan 2024 - Jan 2024
+            A bit of everything in the game development cycle (design, art, audio, mechanics, maintenance)`,links:[{label:`GitHub`,url:`https://github.com/Mshl2299/Ast-Emmental`}],screenshots:[`/slim08/assets/astemmental-basic-DSY5ypod.gif`,`/slim08/assets/aem-XRSIyeVQ.png`,`/slim08/assets/aes-CCr6C_f5.png`],audioFiles:[tr],tags:[`coding`,`game-dev`,`audio`]},{name:`Pain2Go`,shortDescription:`A healthcare-rehabilitation app providing a 2d anatomical mapping to pinpoint muscle locations that may be encountering pain.`,description:`Jan 2024 - Jan 2024
             
             A healthcare-rehabilitation app providing a 2d anatomical mapping to pinpoint muscle locations that may be encountering pain. Once identified, users can view a set of exercises targeting that specific muscle/muscle group, supporting a range of fitness levels. With good consistency and awareness, eventually we will have all Pain2Go away!
             
