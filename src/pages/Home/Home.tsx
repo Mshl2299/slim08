@@ -15,7 +15,7 @@ import PlaybackControls from '../../components/PlaybackControls/PlaybackControls
 
 const projectData = projects
 
-type StripKey = 'left' | 'right'
+type StripKey = 'top' | 'bottom'
 type ProjectWithKey = ProjectRecord & { projectKey: string }
 
 interface StripConfig {
@@ -78,7 +78,7 @@ function createDuplicatedProjectList(
 interface ProjectCardProps {
   project: ProjectWithKey
   index: number
-  side: StripKey
+  location: StripKey
   isDuplicate: boolean
   selectedKey: string | null
   hoveredKey: string | null
@@ -91,7 +91,7 @@ interface ProjectCardProps {
 function ProjectCard({
   project,
   index,
-  side,
+  location,
   isDuplicate,
   selectedKey,
   hoveredKey,
@@ -107,7 +107,7 @@ function ProjectCard({
 
   return (
     <button
-      key={`${projectKey}-${index}-${side}-${isDuplicate ? 'duplicate' : 'original'}`}
+      key={`${projectKey}-${index}-${location}-${isDuplicate ? 'duplicate' : 'original'}`}
       type="button"
       className={`project-float ${isSelected ? 'project-float--selected' : ''} ${
         isMuted ? 'project-float--muted' : ''
@@ -151,7 +151,7 @@ interface InfiniteStripProps {
   offset: number
   trackRef: React.RefObject<HTMLDivElement | null>
   title: string
-  side: StripKey
+  location: StripKey
   selectedKey: string | null
   hoveredKey: string | null
   setSelectedKey: Dispatch<SetStateAction<string | null>>
@@ -167,7 +167,7 @@ function InfiniteStrip({
   offset,
   trackRef,
   title,
-  side,
+  location,
   selectedKey,
   hoveredKey,
   setSelectedKey,
@@ -181,7 +181,7 @@ function InfiniteStrip({
 
   return (
     <div
-      className={`home-array home-array--${side}`}
+      className={`home-array home-array--${location}`}
       aria-label={`Project array ${title}`}
       onPointerEnter={onPointerEnter}
       onPointerLeave={onPointerLeave}
@@ -194,10 +194,10 @@ function InfiniteStrip({
         >
           {doubledItems.map((project, index) => (
             <ProjectCard
-              key={`${project.projectKey}-${index}-${side}-${index >= items.length ? 'duplicate' : 'original'}`}
+              key={`${project.projectKey}-${index}-${location}-${index >= items.length ? 'duplicate' : 'original'}`}
               project={project}
               index={index}
-              side={side}
+              location={location}
               isDuplicate={index >= items.length}
               selectedKey={selectedKey}
               hoveredKey={hoveredKey}
@@ -242,11 +242,11 @@ export default function Home(): ReturnType<React.FC> {
     () => projectData.filter((p) => p.tags.includes('audio')),
     []
   )
-  const leftProjects = useMemo(
+  const topProjects = useMemo(
     () => createDuplicatedProjectList(codingProjects),
     [codingProjects]
   )
-  const rightProjects = useMemo(
+  const bottomProjects = useMemo(
     () => createDuplicatedProjectList(audioProjects),
     [audioProjects]
   )
@@ -259,46 +259,46 @@ export default function Home(): ReturnType<React.FC> {
   const [selectedKey, setSelectedKey] = useState<string | null>(null)
   const [hoveredKey, setHoveredKey] = useState<string | null>(null)
   const [detailProject, setDetailProject] = useState<ProjectRecord | null>(null)
-  const [leftOffset, setLeftOffset] = useState(0)
-  const [rightOffset, setRightOffset] = useState(0)
-  const [leftSequenceWidth, setLeftSequenceWidth] = useState(0)
-  const [rightSequenceWidth, setRightSequenceWidth] = useState(0)
+  const [topOffset, setTopOffset] = useState(0)
+  const [bottomOffset, setBottomOffset] = useState(0)
+  const [topSequenceWidth, setTopSequenceWidth] = useState(0)
+  const [bottomSequenceWidth, setBottomSequenceWidth] = useState(0)
   const [isPointerPaused, setIsPointerPaused] = useState(false)
   const [isDocumentVisible, setIsDocumentVisible] = useState(!document.hidden)
   const [reducedMotionEnabled, setReducedMotionEnabled] = useState(false)
 
   const captionRef = useRef<HTMLElement | null>(null)
-  const leftTrackRef = useRef<HTMLDivElement | null>(null)
-  const rightTrackRef = useRef<HTMLDivElement | null>(null)
+  const topTrackRef = useRef<HTMLDivElement | null>(null)
+  const bottomTrackRef = useRef<HTMLDivElement | null>(null)
 
   const stripConfig = useMemo<StripConfig[]>(
     () => [
       {
-        key: 'left',
-        items: leftProjects,
-        offset: leftOffset,
-        width: leftSequenceWidth,
+        key: 'top',
+        items: topProjects,
+        offset: topOffset,
+        width: topSequenceWidth,
         speed: 120,
         wheelFactor: 0.22,
-        setOffset: setLeftOffset,
+        setOffset: setTopOffset,
       },
       {
-        key: 'right',
-        items: rightProjects,
-        offset: rightOffset,
-        width: rightSequenceWidth,
+        key: 'bottom',
+        items: bottomProjects,
+        offset: bottomOffset,
+        width: bottomSequenceWidth,
         speed: 110,
         wheelFactor: 0.2,
-        setOffset: setRightOffset,
+        setOffset: setBottomOffset,
       },
     ],
     [
-      leftOffset,
-      leftProjects,
-      leftSequenceWidth,
-      rightOffset,
-      rightProjects,
-      rightSequenceWidth,
+      topOffset,
+      topProjects,
+      topSequenceWidth,
+      bottomOffset,
+      bottomProjects,
+      bottomSequenceWidth,
     ]
   )
 
@@ -318,23 +318,23 @@ export default function Home(): ReturnType<React.FC> {
   }, [])
 
   useEffect(() => {
-    const leftTrack = leftTrackRef.current
-    const rightTrack = rightTrackRef.current
+    const topTrack = topTrackRef.current
+    const bottomTrack = bottomTrackRef.current
 
     const updateSequenceWidths = () => {
-      if (leftTrack) setLeftSequenceWidth(leftTrack.scrollWidth / 2)
-      if (rightTrack) setRightSequenceWidth(rightTrack.scrollWidth / 2)
+      if (topTrack) setTopSequenceWidth(topTrack.scrollWidth / 2)
+      if (bottomTrack) setBottomSequenceWidth(bottomTrack.scrollWidth / 2)
     }
 
     updateSequenceWidths()
 
     const resizeObserver = new ResizeObserver(updateSequenceWidths)
 
-    if (leftTrack) resizeObserver.observe(leftTrack)
-    if (rightTrack) resizeObserver.observe(rightTrack)
+    if (topTrack) resizeObserver.observe(topTrack)
+    if (bottomTrack) resizeObserver.observe(bottomTrack)
 
     return () => resizeObserver.disconnect()
-  }, [leftProjects, rightProjects])
+  }, [topProjects, bottomProjects])
 
   useEffect(() => {
     const shouldAnimate =
@@ -425,11 +425,11 @@ export default function Home(): ReturnType<React.FC> {
 
         <div className="home-strip">
           <InfiniteStrip
-            items={leftProjects}
-            offset={leftOffset}
-            trackRef={leftTrackRef}
-            title="left"
-            side="left"
+            items={topProjects}
+            offset={topOffset}
+            trackRef={topTrackRef}
+            title="top"
+            location="top"
             selectedKey={selectedKey}
             hoveredKey={hoveredKey}
             setSelectedKey={setSelectedKey}
@@ -441,11 +441,11 @@ export default function Home(): ReturnType<React.FC> {
           />
 
           <InfiniteStrip
-            items={rightProjects}
-            offset={rightOffset}
-            trackRef={rightTrackRef}
-            title="right"
-            side="right"
+            items={bottomProjects}
+            offset={bottomOffset}
+            trackRef={bottomTrackRef}
+            title="bottom"
+            location="bottom"
             selectedKey={selectedKey}
             hoveredKey={hoveredKey}
             setSelectedKey={setSelectedKey}
