@@ -8,16 +8,16 @@ function About() {
         <h1 className="about-page__title">About Me</h1>
         <img
           src={logo}
-          alt="Marcus Lim logo"
+          alt="Marcus Lim (slim08) logo"
           className="about-page__logo"
-          width={160}
-          height={160}
+          width={120}
+          height={120}
         />
         <p className="about-page__description">
-          Programmer, sound designer and game developer with a founder's drive,
-          passion for learning, and a love for creating. Sweating the small
-          details while keeping a big picture in mind, I build with integrity,
-          authenticity, and a commitment to excellence.
+          Programmer, sound designer and game developer founded upon my core values of integrity,
+          accountability, and a commitment to excellence. Whether it's apps, audio or even documentation,
+          every detail matters as I build with the anchors of a bigger picture and vision. Also, I play a
+          lot of Bloons Tower Defense 6. Thanks for visiting!
         </p>
       </section>
 

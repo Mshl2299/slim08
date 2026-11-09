@@ -5,7 +5,7 @@
   --bg: #000000;
   --gold: #d4a03d;
   --gold-dark: #a67d2a;
-  --gold-shadow: #3a3428;
+  --gold-shadow: #504632;
   --cyan: #a0e0f5;
   --blue: #0090ff;
   /* Semantic tokens */
@@ -22,9 +22,8 @@
   --card-bg: #0a0a0a;
   --social-bg: rgba(160, 224, 245, 0.06);
 
-  --shadow-gold: 4px 4px 0 var(--gold-shadow);
+  --shadow-gold: 1px 2px 0 var(--gold-shadow);
   --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.6), 4px 4px 0 var(--gold-shadow);
-  --shadow-blue: 0 0 24px rgba(0, 144, 255, 0.25);
 
   --sans: 'DM Sans', system-ui, sans-serif;
   --heading: 'Chakra Petch', system-ui, sans-serif;
