@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import './PlaybackControls.css'
 
 import mainTrackA from '../../assets/audio/main/Aspiral.wav'
@@ -35,7 +41,7 @@ interface PlaybackControlsProps {
 
 export default function PlaybackControls({
   autoScroll,
-  setAutoScroll
+  setAutoScroll,
 }: PlaybackControlsProps) {
   const [experimentalMode, setExperimentalMode] = useState(false)
   const [mediaPlaying, setMediaPlaying] = useState(false)
@@ -46,113 +52,118 @@ export default function PlaybackControls({
   const currentTrackIndexRef = useRef(0)
 
   const getTrackName = (source: string) => {
-      const filename = decodeURIComponent(source).split('/').pop() || source || 'unknown track'
-      return filename.replace(/%20/g, '_').replace(/\s+/g, '_')
+    const filename =
+      decodeURIComponent(source).split('/').pop() || source || 'unknown track'
+    return filename.replace(/%20/g, '_').replace(/\s+/g, '_')
+  }
+
+  const stopPlayback = () => {
+    const audio = audioRef.current
+    if (audio) {
+      audio.pause()
+      audio.src = ''
+      audio.load()
     }
-  
-    const stopPlayback = () => {
-      const audio = audioRef.current
-      if (audio) {
-        audio.pause()
-        audio.src = ''
-        audio.load()
-      }
-  
+
+    setCurrentTrackName('Not playing audio')
+    setMediaPlaying(false)
+  }
+
+  const playTrackAtIndex = (trackIndex: number, trackList: string[]) => {
+    const audio = audioRef.current ?? new Audio()
+    if (!audioRef.current) {
+      audioRef.current = audio
+      audio.preload = 'auto'
+      audio.volume = volume
+    }
+
+    const nextSource = trackList[trackIndex % trackList.length]
+    if (!nextSource) {
+      stopPlayback()
+      return
+    }
+
+    currentTrackIndexRef.current = trackIndex % trackList.length
+    setCurrentTrackName(getTrackName(nextSource))
+    setMediaPlaying(true)
+    audio.src = nextSource
+    audio.currentTime = 0
+    audio.volume = volume
+    audio.play().catch(() => {
       setCurrentTrackName('Not playing audio')
       setMediaPlaying(false)
-    }
-  
-    const playTrackAtIndex = (trackIndex: number, trackList: string[]) => {
-      const audio = audioRef.current ?? new Audio()
-      if (!audioRef.current) {
-        audioRef.current = audio
-        audio.preload = 'auto'
-        audio.volume = volume
-      }
-  
-      const nextSource = trackList[trackIndex % trackList.length]
-      if (!nextSource) {
-        stopPlayback()
-        return
-      }
-  
-      currentTrackIndexRef.current = trackIndex % trackList.length
-      setCurrentTrackName(getTrackName(nextSource))
-      setMediaPlaying(true)
-      audio.src = nextSource
-      audio.currentTime = 0
-      audio.volume = volume
-      audio.play().catch(() => {
-        setCurrentTrackName('Not playing audio')
-        setMediaPlaying(false)
-      })
-    }
-  
-    const handleTogglePlay = () => {
-      if (mediaPlaying) {
-        stopPlayback()
-        return
-      }
-  
-      const currentTrackList = experimentalMode ? experimentalAudioFiles : mainAudioFiles
-      if (currentTrackList.length === 0) {
-        stopPlayback()
-        return
-      }
-  
-      const activeIndex = currentTrackIndexRef.current % currentTrackList.length
-      playTrackAtIndex(activeIndex, currentTrackList)
-    }
-  
-    const handleExperimentalToggle = () => {
-      const nextMode = !experimentalMode
-      setExperimentalMode(nextMode)
+    })
+  }
+
+  const handleTogglePlay = () => {
+    if (mediaPlaying) {
       stopPlayback()
-      currentTrackIndexRef.current = 0
+      return
     }
-  
-    const handleNextTrack = () => {
-      const trackList = experimentalMode ? experimentalAudioFiles : mainAudioFiles
+
+    const currentTrackList = experimentalMode
+      ? experimentalAudioFiles
+      : mainAudioFiles
+    if (currentTrackList.length === 0) {
+      stopPlayback()
+      return
+    }
+
+    const activeIndex = currentTrackIndexRef.current % currentTrackList.length
+    playTrackAtIndex(activeIndex, currentTrackList)
+  }
+
+  const handleExperimentalToggle = () => {
+    const nextMode = !experimentalMode
+    setExperimentalMode(nextMode)
+    stopPlayback()
+    currentTrackIndexRef.current = 0
+  }
+
+  const handleNextTrack = () => {
+    const trackList = experimentalMode ? experimentalAudioFiles : mainAudioFiles
+    if (!trackList.length) {
+      stopPlayback()
+      return
+    }
+
+    const nextIndex = (currentTrackIndexRef.current + 1) % trackList.length
+    playTrackAtIndex(nextIndex, trackList)
+  }
+
+  useEffect(() => {
+    const audio = audioRef.current ?? new Audio()
+    if (!audioRef.current) {
+      audioRef.current = audio
+      audio.preload = 'auto'
+      audio.volume = volume
+    }
+
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+
+    const handleEnded = () => {
+      const trackList = experimentalMode
+        ? experimentalAudioFiles
+        : mainAudioFiles
       if (!trackList.length) {
         stopPlayback()
         return
       }
-  
+
       const nextIndex = (currentTrackIndexRef.current + 1) % trackList.length
-      playTrackAtIndex(nextIndex, trackList)
+      if (mediaPlaying) {
+        playTrackAtIndex(nextIndex, trackList)
+      }
     }
-  
-    useEffect(() => {
-      const audio = audioRef.current ?? new Audio()
-      if (!audioRef.current) {
-        audioRef.current = audio
-        audio.preload = 'auto'
-        audio.volume = volume
-      }
-  
-      if (audioRef.current) {
-        audioRef.current.volume = volume
-      }
-  
-      const handleEnded = () => {
-        const trackList = experimentalMode ? experimentalAudioFiles : mainAudioFiles
-        if (!trackList.length) {
-          stopPlayback()
-          return
-        }
-  
-        const nextIndex = (currentTrackIndexRef.current + 1) % trackList.length
-        if (mediaPlaying) {
-          playTrackAtIndex(nextIndex, trackList)
-        }
-      }
-  
-      audio.onended = handleEnded
-  
-      return () => {
-        audio.onended = null
-      }
-    }, [experimentalMode, mediaPlaying, volume])
+
+    audio.onended = handleEnded
+
+    return () => {
+      audio.onended = null
+    }
+  })
 
   return (
     <div className="playback" aria-live="polite">
@@ -173,7 +184,9 @@ export default function PlaybackControls({
             className={`playback__label ${experimentalMode ? 'playback__label--active' : ''}`}
             onClick={handleExperimentalToggle}
             aria-label={
-              experimentalMode ? 'Use main audio folder' : 'Use experimental audio folder'
+              experimentalMode
+                ? 'Use main audio folder'
+                : 'Use experimental audio folder'
             }
             aria-pressed={experimentalMode}
           >

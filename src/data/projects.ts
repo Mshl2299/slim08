@@ -26,7 +26,6 @@ import natureTrackerA from '../assets/project-screenshots/natureTracker.png'
 import pain2goA from '../assets/project-screenshots/pain2go_landing.jpg'
 import pain2goB from '../assets/project-screenshots/pain2go_exercises.jpg'
 
-
 export type ProjectTag =
   | 'coding'
   | 'audio'
@@ -299,7 +298,10 @@ export const projects: ProjectRecord[] = [
             A healthcare-rehabilitation app providing a 2d anatomical mapping to pinpoint muscle locations that may be encountering pain. Once identified, users can view a set of exercises targeting that specific muscle/muscle group, supporting a range of fitness levels. With good consistency and awareness, eventually we will have all Pain2Go away!
             
             Completed on a team of 4 as part of nwHacks 2024, a 24-hour hackathon.`,
-    links: [{ label: 'GitHub', url: 'https://github.com/gordnzhou/Pain2Go' }, { label: 'Link', url: 'https://gordnzhou.github.io/Pain2Go/' }],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/gordnzhou/Pain2Go' },
+      { label: 'Link', url: 'https://gordnzhou.github.io/Pain2Go/' },
+    ],
     screenshots: [pain2goA, pain2goB],
     tags: ['coding'],
   },

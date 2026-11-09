@@ -14,10 +14,11 @@ function About() {
           height={120}
         />
         <p className="about-page__description">
-          Programmer, sound designer and game developer founded upon my core values of integrity,
-          accountability, and a commitment to excellence. Whether it's apps, audio or even documentation,
-          every detail matters as I build with the anchors of a bigger picture and vision. Also, I play a
-          lot of Bloons Tower Defense 6. Thanks for visiting!
+          Programmer, sound designer and game developer founded upon my core
+          values of integrity, accountability, and a commitment to excellence.
+          Whether it's apps, audio or even documentation, every detail matters
+          as I build with the anchors of a bigger picture and vision. Also, I
+          play a lot of Bloons Tower Defense 6. Thanks for visiting!
         </p>
       </section>
 

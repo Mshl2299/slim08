@@ -109,8 +109,9 @@ function ProjectCard({
     <button
       key={`${projectKey}-${index}-${side}-${isDuplicate ? 'duplicate' : 'original'}`}
       type="button"
-      className={`project-float ${isSelected ? 'project-float--selected' : ''} ${isMuted ? 'project-float--muted' : ''
-        } ${isHovered ? 'project-float--hovered' : ''}`}
+      className={`project-float ${isSelected ? 'project-float--selected' : ''} ${
+        isMuted ? 'project-float--muted' : ''
+      } ${isHovered ? 'project-float--hovered' : ''}`}
       style={{
         backgroundImage: getProjectBackgroundImage(project),
         backgroundPosition: 'center',
