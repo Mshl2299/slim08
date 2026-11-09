@@ -17,6 +17,8 @@ import astEmmentalB from '../assets/project-screenshots/aem.png'
 import astEmmentalC from '../assets/project-screenshots/aes.png'
 import astEmmentalAudioA from '../assets/audio/main/Nereus.mp3'
 import vetonedA from '../assets/project-screenshots/vetoned.png'
+import airbnbA from '../assets/project-screenshots/airbnb_correlation_heatmap.png'
+import airbnbB from '../assets/project-screenshots/airbnb_trend_comparison.png'
 import insightsA from '../assets/project-screenshots/si136.png'
 import natureTrackerA from '../assets/project-screenshots/natureTracker.png'
 import pain2goA from '../assets/project-screenshots/pain2go_landing.jpg'
@@ -102,6 +104,7 @@ export const projects: ProjectRecord[] = [
         url: 'https://github.com/Mshl2299/Predicting-Airbnb-Price-in-European-Cities',
       },
     ],
+    screenshots: [airbnbA, airbnbB],
     tags: ['coding', 'data-science'],
   },
   {
