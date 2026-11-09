@@ -14,16 +14,6 @@ coverage
 *.local
 *.env
 
-# Private portfolio plaintext (never commit)
-portfolio.private.json
-
-# AI
-.cursor/*
-.cursorignore
-
-.CLAUDE.md
-
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
