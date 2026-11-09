@@ -17,7 +17,3 @@ npm run format - format code using Prettier
 npm run preview - preview production build locally
 
 npm run deploy - build and deploy to GitHub Pages
-
-## Portfolio data (private)
-
-npm run encode:portfolio - encode plaintext data to improve confidentiality
