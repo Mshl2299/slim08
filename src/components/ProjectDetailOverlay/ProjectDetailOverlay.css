@@ -166,8 +166,8 @@
   object-fit: cover;
 }
 
-.project-detail-overlay__audio {
-  color: rgba(255, 255, 255, 0.72);
+.project-detail-overlay__audio-text {
+  color: var(--cyan);
 }
 
 .project-detail-overlay__close {

@@ -1,7 +1,7 @@
 import photoLoopA from '../assets/project-screenshots/e49vOF.png'
 import photoLoopB from '../assets/project-screenshots/QYsXh1.png'
 import photoLoopC from '../assets/project-screenshots/yu3LkT.png'
-import photoLoopAudioA from '../assets/audio/main/st_ranges_hop_highdef_noloop.wav'
+import photoLoopAudioA from '../assets/audio/experimental/photoloop_trailer_v2.mp3'
 import nutreentsA from '../assets/project-screenshots/kJtM64.gif'
 import nutreentsB from '../assets/project-screenshots/dQ5QNt.gif'
 import pillowA from '../assets/project-screenshots/qVziEp.png'
@@ -11,6 +11,8 @@ import pillowD from '../assets/project-screenshots/ncIxRV.png'
 import ssTrangeA from '../assets/project-screenshots/o0qgtf.gif'
 import ssTrangeB from '../assets/project-screenshots/9Zos0D.gif'
 import ssTrangeC from '../assets/project-screenshots/obP3W2.gif'
+import ssTrangeAudioA from '../assets/audio/experimental/the_ss_trange.mp3'
+import ssTrangeAudioB from '../assets/audio/main/st_ranges_hop_highdef_noloop.wav'
 import pacemakerA from '../assets/project-screenshots/pacemaker.gif'
 import astEmmentalA from '../assets/project-screenshots/astemmental-basic.gif'
 import astEmmentalB from '../assets/project-screenshots/aem.png'
@@ -232,6 +234,7 @@ export const projects: ProjectRecord[] = [
       { label: 'itch.io', url: 'https://goosemachine.itch.io/the-ss-trange' },
     ],
     screenshots: [ssTrangeA, ssTrangeB, ssTrangeC],
+    audioFiles: [ssTrangeAudioA, ssTrangeAudioB],
     tags: ['coding', 'game-dev', 'audio'],
   },
   {

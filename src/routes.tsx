@@ -3,7 +3,6 @@ import Layout from './components/layout/Layout'
 import Home from './pages/Home/Home'
 import Projects from './pages/Projects/Projects'
 import About from './pages/About/About'
-import SoundDesign from './pages/SoundDesign/SoundDesign'
 
 function AppRoutes() {
   return (
@@ -11,7 +10,6 @@ function AppRoutes() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/soundDesign" element={<SoundDesign />} />
         <Route path="/about" element={<About />} />
       </Route>
     </Routes>

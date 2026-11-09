@@ -34,7 +34,7 @@ function Projects() {
   }, [selectedTag])
 
   return (
-    <PageShell title="Projects" lead="Portfolio work and audio experiments">
+    <PageShell title="Projects" lead="Programming Projects">
       <div className="projects-page">
         <div
           className="projects-filter"

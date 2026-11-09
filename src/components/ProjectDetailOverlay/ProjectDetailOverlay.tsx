@@ -21,6 +21,7 @@ interface ProjectDetailOverlayProps {
   onClose: () => void
 }
 
+
 export function ProjectDetailOverlay({
   project,
   onClose,
@@ -53,6 +54,11 @@ export function ProjectDetailOverlay({
   const previewImage = project.screenshots?.[0] ?? null
   const additionalScreenshots = project.screenshots ?? []
   const projectLinks = project.links ?? []
+
+  const getTrackName = (source: string) => {
+    const filename = decodeURIComponent(source).split('/').pop() || source || 'unknown track'
+    return filename.replace(/%20/g, '_').replace(/\s+/g, '_')
+  }
 
   return (
     <div
@@ -116,14 +122,16 @@ export function ProjectDetailOverlay({
             {project.audioFiles && project.audioFiles.length > 0 ? (
               <div className="project-detail-overlay__audio-list">
                 {project.audioFiles.map((audioFile, index) => (
+                  <div>
+                    <p className="project-detail-overlay__audio-text">{getTrackName(audioFile)}</p>
                   <audio
                     key={`${project.name}-audio-${index}`}
-                    className="project-detail-overlay__audio"
                     controls
                     preload="none"
                   >
                     <source src={audioFile} />
                   </audio>
+                  </div>
                 ))}
               </div>
             ) : null}
